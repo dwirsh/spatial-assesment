@@ -1,0 +1,1883 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#f8f9fa" />
+  <title>Spatial Analysis Skill Assessment | MAPID Academy</title>
+  <meta name="description" content="Assessment gratis berbasis kasus nyata untuk mengetahui level Spatial Analysis, area yang perlu dikembangkan, dan langkah belajar berikutnya." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #2f84c6;
+      --blue-dark: #1e638f;
+      --green: #a1cb62;
+      --yellow: #ffd43b;
+      --black: #151515;
+      --white: #f8f9fa;
+      --paper: #ffffff;
+      --muted: #667085;
+      --line: #dbe3ea;
+      --soft-blue: #edf6fc;
+      --soft-green: #f1f8e7;
+      --soft-black: #22282f;
+      --danger: #b42318;
+      --max: 1120px;
+      --radius-xl: 28px;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --shadow-soft: 0 18px 50px rgba(21, 21, 21, .08);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-width: 0;
+      overflow-x: hidden;
+      background: var(--white);
+      color: var(--black);
+      font-family: "Figtree", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    button, input, select, a { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    img, svg { max-width: 100%; }
+    [hidden] { display: none !important; }
+
+    :focus-visible {
+      outline: 3px solid rgba(47, 132, 198, .35);
+      outline-offset: 3px;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .page-shell::before,
+    .page-shell::after {
+      content: "";
+      position: fixed;
+      pointer-events: none;
+      z-index: -1;
+      filter: blur(0);
+    }
+
+    .page-shell::before {
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      right: -160px;
+      top: 90px;
+      background: radial-gradient(circle, rgba(161, 203, 98, .22), rgba(161, 203, 98, 0) 70%);
+    }
+
+    .page-shell::after {
+      width: 440px;
+      height: 440px;
+      border-radius: 50%;
+      left: -210px;
+      bottom: 8vh;
+      background: radial-gradient(circle, rgba(47, 132, 198, .16), rgba(47, 132, 198, 0) 70%);
+    }
+
+    .nav {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 22px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--black);
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background:
+        linear-gradient(135deg, var(--blue) 0 52%, transparent 52%),
+        linear-gradient(315deg, var(--green) 0 46%, var(--black) 46% 100%);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.24);
+    }
+
+    .nav-link {
+      color: var(--blue-dark);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: .95rem;
+    }
+
+    .view {
+      animation: viewIn .34s ease both;
+    }
+
+    @keyframes viewIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--blue-dark);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 18px;
+      height: 3px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+    h1, h2, h3 {
+      letter-spacing: -.035em;
+      line-height: 1.04;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5.4rem);
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      font-weight: 800;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .hero {
+      padding: 56px 0 78px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(330px, .92fr);
+      gap: 52px;
+      align-items: center;
+    }
+
+    .hero-copy .lead {
+      max-width: 760px;
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      color: #394451;
+      margin-bottom: 22px;
+    }
+
+    .time-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--soft-blue);
+      color: var(--blue-dark);
+      font-weight: 700;
+      margin-bottom: 28px;
+    }
+
+    .time-badge .clock {
+      width: 18px;
+      height: 18px;
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .time-badge .clock::before,
+    .time-badge .clock::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1px;
+      background: currentColor;
+      transform-origin: bottom;
+    }
+
+    .time-badge .clock::before { height: 5px; transform: translate(-50%, -100%); }
+    .time-badge .clock::after { height: 4px; transform: translate(-50%, -100%) rotate(120deg); }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 800;
+      transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn[disabled] { opacity: .45; cursor: not-allowed; transform: none; }
+
+    .btn-primary {
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 0 10px 24px rgba(255, 212, 59, .28);
+    }
+
+    .btn-secondary {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue-dark);
+      border: 1px solid #bdd6e8;
+    }
+
+    .text-link {
+      color: var(--blue-dark);
+      font-weight: 700;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .hero-panel {
+      position: relative;
+      background: var(--black);
+      border-radius: var(--radius-xl);
+      padding: 26px;
+      color: var(--white);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      min-height: 520px;
+    }
+
+    .hero-panel::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -70px;
+      top: -70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(161,203,98,.34), transparent 66%);
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: auto -30px 70px 35%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(47,132,198,.8), rgba(161,203,98,.6), transparent);
+      transform: rotate(-18deg);
+      box-shadow: 0 -74px 0 rgba(47,132,198,.12), 0 74px 0 rgba(161,203,98,.1);
+    }
+
+    .preview-label {
+      position: relative;
+      z-index: 1;
+      color: #b9c3cc;
+      font-size: .75rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .preview-card {
+      position: relative;
+      z-index: 1;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 20px;
+      padding: 20px;
+      backdrop-filter: blur(5px);
+    }
+
+    .preview-card h3 { margin-bottom: 6px; }
+    .preview-card p { color: #cfd7dd; margin-bottom: 16px; }
+
+    .mini-grid {
+      position: relative;
+      aspect-ratio: 1.24 / 1;
+      border-left: 1px solid rgba(255,255,255,.34);
+      border-bottom: 1px solid rgba(255,255,255,.34);
+      background:
+        linear-gradient(to right, transparent calc(50% - .5px), rgba(255,255,255,.22) 50%, transparent calc(50% + .5px)),
+        linear-gradient(to bottom, transparent calc(50% - .5px), rgba(255,255,255,.22) 50%, transparent calc(50% + .5px));
+    }
+
+    .mini-grid .dot {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      left: 68%;
+      top: 28%;
+      background: var(--yellow);
+      box-shadow: 0 0 0 7px rgba(255,212,59,.12);
+    }
+
+    .mini-grid .quadrant-name {
+      position: absolute;
+      font-size: .66rem;
+      color: #aeb8c0;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+    .mini-grid .q1 { left: 7px; top: 7px; }
+    .mini-grid .q2 { right: 7px; top: 7px; text-align: right; }
+    .mini-grid .q3 { left: 7px; bottom: 7px; }
+    .mini-grid .q4 { right: 7px; bottom: 7px; text-align: right; }
+
+    .feature-strip {
+      padding: 0 0 92px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .info-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .info-card h3 { margin-bottom: 18px; }
+    .plain-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .plain-list li {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+    }
+
+    .check,
+    .step-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: .76rem;
+      font-weight: 800;
+      flex: none;
+    }
+    .check { background: var(--soft-green); color: #4e712b; }
+    .step-number { background: var(--soft-blue); color: var(--blue-dark); }
+
+    .flow-shell {
+      width: min(900px, calc(100% - 32px));
+      margin: 34px auto 92px;
+    }
+
+    .flow-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(22px, 5vw, 44px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .flow-header {
+      margin-bottom: 28px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .flow-header h2 { margin: 7px 0 8px; }
+    .flow-header p { color: var(--muted); margin: 0; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .field { min-width: 0; }
+    .field.full { grid-column: 1 / -1; }
+    label.field-label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #242b32;
+    }
+
+    input[type="text"], input[type="email"], input[type="tel"], select {
+      width: 100%;
+      border: 1px solid #cfd9e2;
+      border-radius: 13px;
+      background: #fff;
+      min-height: 48px;
+      padding: 11px 13px;
+      color: var(--black);
+      outline: none;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(47,132,198,.12);
+    }
+
+    .field-error {
+      min-height: 20px;
+      margin: 6px 0 0;
+      color: var(--danger);
+      font-size: .86rem;
+    }
+
+    .consent {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 14px 16px;
+      border-radius: 13px;
+      background: #f4f7f9;
+      border: 1px solid var(--line);
+    }
+
+    .consent input { margin-top: 4px; accent-color: var(--blue); }
+    .form-actions { margin-top: 10px; display: flex; justify-content: flex-end; gap: 10px; flex-wrap: wrap; }
+
+    .question-shell {
+      width: min(860px, calc(100% - 32px));
+      margin: 30px auto 90px;
+    }
+
+    .progress-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 6;
+      background: rgba(248,249,250,.94);
+      backdrop-filter: blur(8px);
+      padding: 16px 0 12px;
+      margin-bottom: 18px;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 9px;
+      font-size: .9rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 9px;
+      border-radius: 999px;
+      background: #dce6ed;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+      transition: width .28s ease;
+    }
+
+    .question-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: clamp(22px, 5vw, 40px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .question-category {
+      color: var(--blue-dark);
+      font-size: .75rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .scenario {
+      background: #f3f6f8;
+      border-left: 4px solid var(--blue);
+      border-radius: 0 14px 14px 0;
+      padding: 18px 18px 3px;
+      margin-bottom: 22px;
+      color: #2d3740;
+    }
+
+    .scenario p { margin-bottom: 15px; }
+
+    .question-prompt {
+      font-weight: 800;
+      font-size: clamp(1.1rem, 2.3vw, 1.38rem);
+      letter-spacing: -.02em;
+      margin-bottom: 16px;
+    }
+
+    .options {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .option-card {
+      width: 100%;
+      text-align: left;
+      border: 1px solid #d4dde5;
+      border-radius: 15px;
+      background: #fff;
+      padding: 16px 17px;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      color: var(--black);
+      transition: border .16s ease, background .16s ease, transform .16s ease;
+    }
+
+    .option-card:hover { border-color: #9fc7e5; transform: translateY(-1px); }
+    .option-card[aria-checked="true"] {
+      border-color: var(--blue);
+      background: var(--soft-blue);
+      box-shadow: inset 0 0 0 1px var(--blue);
+    }
+
+    .option-marker {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #b7c4cf;
+      display: grid;
+      place-items: center;
+      margin-top: 1px;
+    }
+    .option-card[aria-checked="true"] .option-marker {
+      border-color: var(--blue);
+      box-shadow: inset 0 0 0 5px var(--soft-blue);
+      background: var(--blue);
+    }
+
+    .question-actions {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .result-shell {
+      width: min(1020px, calc(100% - 32px));
+      margin: 34px auto 92px;
+    }
+
+    .result-hero {
+      background: var(--black);
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      padding: clamp(26px, 5vw, 54px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .result-hero::after {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -90px;
+      bottom: -130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(47,132,198,.54), rgba(47,132,198,0) 69%);
+      pointer-events: none;
+    }
+
+    .result-greeting { color: #c7d0d7; font-weight: 600; margin-bottom: 9px; }
+    .result-title {
+      position: relative;
+      z-index: 1;
+      margin: 0 0 10px;
+      font-size: clamp(2.4rem, 6vw, 5.1rem);
+      letter-spacing: -.04em;
+      line-height: .96;
+      color: var(--white);
+    }
+
+    .level-chip {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      padding: 8px 11px;
+      border-radius: 999px;
+      background: rgba(161,203,98,.16);
+      border: 1px solid rgba(161,203,98,.42);
+      color: #d9efb7;
+      font-weight: 700;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .result-card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: clamp(22px, 4vw, 30px);
+    }
+
+    .result-card h3 { margin-bottom: 16px; }
+    .result-card p:last-child { margin-bottom: 0; }
+
+    .quadrant-wrap {
+      display: grid;
+      gap: 10px;
+    }
+
+    .quadrant-chart {
+      width: 100%;
+      aspect-ratio: 1.2 / 1;
+      background: #f7f9fb;
+      border-radius: 14px;
+      overflow: visible;
+    }
+
+    .score-list { display: grid; gap: 18px; }
+    .score-line-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .score-line-header span:last-child { color: var(--blue-dark); }
+    .score-track {
+      height: 10px;
+      border-radius: 999px;
+      background: #e7edf2;
+      overflow: hidden;
+    }
+    .score-fill {
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+    }
+
+    .narrative-title {
+      color: var(--blue-dark);
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      margin-bottom: 10px;
+    }
+
+    .next-step {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 14px;
+      background: var(--soft-green);
+      border-left: 4px solid var(--green);
+    }
+    .next-step strong { display: block; margin-bottom: 4px; }
+
+    .development-list {
+      display: grid;
+      gap: 10px;
+      padding-left: 20px;
+      margin: 0;
+    }
+    .development-list li::marker { color: var(--blue); }
+
+    .personal-reco {
+      border-top: 1px solid var(--line);
+      margin-top: 20px;
+      padding-top: 20px;
+    }
+
+    .bridge {
+      margin-top: 24px;
+      background: linear-gradient(135deg, var(--soft-blue), var(--soft-green));
+      border: 1px solid #cfe2d1;
+      border-radius: var(--radius-lg);
+      padding: clamp(24px, 5vw, 38px);
+    }
+    .bridge h2 { margin-bottom: 12px; }
+    .bridge p { max-width: 720px; color: #3f4c56; }
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+    .result-note { color: var(--muted); margin: 14px 0 0; font-size: .9rem; }
+
+    .footer {
+      border-top: 1px solid var(--line);
+      padding: 26px 0 38px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    @media (max-width: 840px) {
+      .hero { grid-template-columns: 1fr; padding-top: 34px; }
+      .hero-panel { min-height: 460px; }
+      .feature-strip { grid-template-columns: 1fr; }
+      .result-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 767px) {
+      .nav { padding: 16px 0; }
+      .nav-link { font-size: .86rem; }
+      .brand span:last-child { font-size: .92rem; }
+      h1 { font-size: clamp(2.45rem, 13vw, 4rem); }
+      .hero { padding: 26px 0 58px; gap: 34px; }
+      .hero-panel { min-height: unset; padding: 20px; }
+      .feature-strip { padding-bottom: 64px; }
+      .flow-shell, .question-shell, .result-shell { margin-bottom: 64px; }
+      .flow-card, .question-card { border-radius: 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .flow-header { display: block; }
+      .form-actions .btn { width: 100%; }
+      .question-actions .btn { width: 100%; }
+      .option-card { padding: 15px; }
+      .result-title { font-size: clamp(2.25rem, 12vw, 4.2rem); }
+      .cta-row .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-shell">
+  <nav class="nav" aria-label="Navigasi utama">
+    <a class="brand" href="#" id="brandHome" aria-label="MAPID Academy - kembali ke halaman awal assessment">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>MAPID ACADEMY</span>
+    </a>
+    <a class="nav-link bootcamp-link" href="https://mapid.co.id/academy/spatial" target="_blank" rel="noopener">Spatial Analysis Bootcamp ↗</a>
+  </nav>
+
+  <main>
+    <section id="landingView" class="view">
+      <div class="container hero">
+        <div class="hero-copy">
+          <span class="eyebrow">Penilaian Gratis</span>
+          <h1>Sejauh mana kemampuan <span style="color:var(--blue)">Spatial Analysis</span> Anda?</h1>
+          <p class="lead">Assessment gratis berbasis kasus nyata. Ketahui level, area yang perlu dikembangkan, dan langkah belajar yang sesuai.</p>
+          <div class="time-badge"><span class="clock" aria-hidden="true"></span> Sekitar 10 sampai 12 menit</div>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="startBtn" type="button">Start Assessment <span aria-hidden="true">→</span></button>
+            <a class="text-link bootcamp-link" href="https://mapid.co.id/academy/spatial" target="_blank" rel="noopener">Lihat program Spatial Analysis Bootcamp</a>
+          </div>
+        </div>
+
+        <aside class="hero-panel" aria-label="Contoh tampilan hasil">
+          <div class="preview-label">Contoh tampilan hasil</div>
+          <div class="preview-card">
+            <h3>ANALYTICAL THINKER</h3>
+            <p>Level: Competent</p>
+            <div class="mini-grid" aria-hidden="true">
+              <span class="quadrant-name q1">Analytical<br>Thinker</span>
+              <span class="quadrant-name q2">Advanced<br>Practitioner</span>
+              <span class="quadrant-name q3">Foundational</span>
+              <span class="quadrant-name q4">Tool<br>Operator</span>
+              <span class="dot"></span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="container feature-strip">
+        <section class="info-card" aria-labelledby="benefitTitle">
+          <h3 id="benefitTitle">Apa yang Anda dapat</h3>
+          <ul class="plain-list">
+            <li><span class="check">✓</span><span>Level kemampuan Anda dalam dua dimensi</span></li>
+            <li><span class="check">✓</span><span>Area spesifik yang perlu dikembangkan</span></li>
+            <li><span class="check">✓</span><span>Rekomendasi langkah belajar berikutnya</span></li>
+          </ul>
+        </section>
+        <section class="info-card" aria-labelledby="howTitle">
+          <h3 id="howTitle">Cara kerja</h3>
+          <ol class="plain-list">
+            <li><span class="step-number">1</span><span>Jawab 13 soal berbasis kasus nyata</span></li>
+            <li><span class="step-number">2</span><span>Isi data diri singkat</span></li>
+            <li><span class="step-number">3</span><span>Lihat hasil dan rekomendasi</span></li>
+          </ol>
+        </section>
+      </div>
+    </section>
+
+    <section id="leadView" class="view" hidden>
+      <div class="flow-shell">
+        <div class="flow-card">
+          <div class="flow-header">
+            <div>
+              <span class="eyebrow">Step 2</span>
+              <h2>Kenali konteks Anda</h2>
+              <p>Isi data singkat agar hasil assessment dapat dibaca dalam konteks yang tepat.</p>
+            </div>
+          </div>
+
+          <form id="leadForm" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label class="field-label" for="nama">Nama lengkap</label>
+                <input id="nama" name="nama" type="text" autocomplete="name" aria-describedby="nama-error" />
+                <p class="field-error" id="nama-error"></p>
+              </div>
+              <div class="field">
+                <label class="field-label" for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" aria-describedby="email-error" />
+                <p class="field-error" id="email-error"></p>
+              </div>
+              <div class="field">
+                <label class="field-label" for="whatsapp">WhatsApp</label>
+                <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" placeholder="08xxxxxxxxxx atau 62xxxxxxxxxx" aria-describedby="whatsapp-error" />
+                <p class="field-error" id="whatsapp-error"></p>
+              </div>
+              <div class="field">
+                <label class="field-label" for="peran">Peran Anda saat ini</label>
+                <select id="peran" name="peran" aria-describedby="peran-error"><option value="">Pilih peran</option></select>
+                <p class="field-error" id="peran-error"></p>
+              </div>
+              <div class="field">
+                <label class="field-label" for="sektor">Sektor tempat Anda bekerja atau ingin berkarier</label>
+                <select id="sektor" name="sektor" aria-describedby="sektor-error"><option value="">Pilih sektor</option></select>
+                <p class="field-error" id="sektor-error"></p>
+              </div>
+              <div class="field">
+                <label class="field-label" for="tools">Tools yang paling sering Anda gunakan</label>
+                <select id="tools" name="tools" aria-describedby="tools-error"><option value="">Pilih tools</option></select>
+                <p class="field-error" id="tools-error"></p>
+              </div>
+              <div class="field full">
+                <label class="field-label" for="frekuensi">Seberapa sering Anda melakukan analisis spasial</label>
+                <select id="frekuensi" name="frekuensi" aria-describedby="frekuensi-error"><option value="">Pilih frekuensi</option></select>
+                <p class="field-error" id="frekuensi-error"></p>
+              </div>
+              <div class="field full">
+                <label class="consent" for="consent">
+                  <input id="consent" name="consent" type="checkbox" aria-describedby="consent-error" />
+                  <span>Saya bersedia data ini digunakan MAPID Academy untuk mengirimkan hasil assessment dan informasi program terkait.</span>
+                </label>
+                <p class="field-error" id="consent-error"></p>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-outline" id="leadBackBtn" type="button"><span aria-hidden="true">←</span> Kembali</button>
+              <button class="btn btn-primary" type="submit">Lihat Hasil <span aria-hidden="true">→</span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="questionView" class="view" hidden>
+      <div class="question-shell">
+        <div class="progress-wrap">
+          <div class="progress-meta">
+            <span id="progressText">Soal 1 dari 15</span>
+            <span id="progressPercent">7%</span>
+          </div>
+          <div id="progressBar" class="progress-track" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="15" aria-label="Progress assessment">
+            <div id="progressFill" class="progress-fill"></div>
+          </div>
+        </div>
+
+        <article class="question-card" id="questionCard">
+          <div class="question-category" id="questionCategory"></div>
+          <div class="scenario" id="questionScenario"></div>
+          <div class="question-prompt" id="questionPrompt"></div>
+          <div class="options" id="questionOptions" role="radiogroup" aria-labelledby="questionPrompt"></div>
+          <div class="question-actions">
+            <button class="btn btn-outline" id="prevQuestionBtn" type="button"><span aria-hidden="true">←</span> Kembali</button>
+            <button class="btn btn-primary" id="nextQuestionBtn" type="button" disabled>Lanjut <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="resultView" class="view" hidden>
+      <div class="result-shell">
+        <section class="result-hero">
+          <p class="result-greeting" id="resultGreeting">Halo</p>
+          <h1 class="result-title" id="resultTitle">ANALYTICAL THINKER</h1>
+          <span class="level-chip" id="resultLevel">Level: Competent</span>
+        </section>
+
+        <div class="result-grid">
+          <section class="result-card quadrant-wrap" aria-labelledby="quadrantHeading">
+            <h3 id="quadrantHeading">Peta kemampuan Anda</h3>
+            <svg id="quadrantSvg" class="quadrant-chart" viewBox="0 0 520 430" role="img" aria-labelledby="quadrantSvgTitle quadrantSvgDesc">
+              <title id="quadrantSvgTitle">Kuadran Spatial Thinking dan Analytical Workflow</title>
+              <desc id="quadrantSvgDesc">Posisi peserta ditentukan berdasarkan skor Spatial Thinking dan Analytical Workflow.</desc>
+              <rect x="62" y="30" width="412" height="340" rx="18" fill="#f7f9fb" stroke="#dbe3ea"/>
+              <line x1="268" y1="30" x2="268" y2="370" stroke="#b9c8d4" stroke-width="2"/>
+              <line x1="62" y1="200" x2="474" y2="200" stroke="#b9c8d4" stroke-width="2"/>
+              <text x="80" y="58" font-size="13" fill="#50606c" font-weight="700">ANALYTICAL THINKER</text>
+              <text x="454" y="58" text-anchor="end" font-size="13" fill="#50606c" font-weight="700">ADVANCED PRACTITIONER</text>
+              <text x="80" y="350" font-size="13" fill="#50606c" font-weight="700">FOUNDATIONAL</text>
+              <text x="454" y="350" text-anchor="end" font-size="13" fill="#50606c" font-weight="700">TOOL OPERATOR</text>
+              <text x="270" y="415" text-anchor="middle" font-size="13" fill="#667085" font-weight="700">Analytical Workflow →</text>
+              <text x="18" y="205" text-anchor="middle" font-size="13" fill="#667085" font-weight="700" transform="rotate(-90 18 205)">Spatial Thinking →</text>
+              <circle id="quadrantHalo" cx="268" cy="200" r="22" fill="rgba(255,212,59,.22)"/>
+              <circle id="quadrantDot" cx="268" cy="200" r="10" fill="#ffd43b" stroke="#151515" stroke-width="2"/>
+            </svg>
+          </section>
+
+          <section class="result-card" aria-labelledby="scoreHeading">
+            <h3 id="scoreHeading">Skor dua dimensi</h3>
+            <div class="score-list">
+              <div>
+                <div class="score-line-header"><span>Spatial Thinking</span><span id="spatialScoreText">0 dari 7</span></div>
+                <div class="score-track"><div id="spatialScoreFill" class="score-fill"></div></div>
+              </div>
+              <div>
+                <div class="score-line-header"><span>Analytical Workflow</span><span id="workflowScoreText">0 dari 6</span></div>
+                <div class="score-track"><div id="workflowScoreFill" class="score-fill"></div></div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="result-grid">
+          <section class="result-card" aria-labelledby="narrativeHeading">
+            <div class="narrative-title" id="narrativeHeading"></div>
+            <p id="narrativeBody"></p>
+            <div class="next-step">
+              <strong>Langkah berikutnya</strong>
+              <span id="narrativeNext"></span>
+            </div>
+          </section>
+
+          <section class="result-card" aria-labelledby="developmentHeading">
+            <h3 id="developmentHeading">Area yang perlu dikembangkan</h3>
+            <ul class="development-list" id="developmentList"></ul>
+            <div class="personal-reco">
+              <h3>Rekomendasi personal</h3>
+              <p id="personalRecommendation"></p>
+            </div>
+          </section>
+        </div>
+
+        <section class="bridge">
+          <span class="eyebrow">Next step</span>
+          <h2>What should you learn next?</h2>
+          <p>Bangun kemampuan spatial analysis yang lebih terstruktur melalui latihan berbasis kasus, workflow yang dapat dijalankan ulang, dan project yang bisa menjadi bukti kompetensi.</p>
+          <div class="cta-row">
+            <a id="upgradeCta" class="btn btn-primary bootcamp-cta" href="https://mapid.co.id/academy/spatial" target="_blank" rel="noopener">Upgrade Skill Sekarang <span aria-hidden="true">→</span></a>
+            <a id="curriculumCta" class="btn btn-outline bootcamp-cta" href="https://mapid.co.id/academy/spatial" target="_blank" rel="noopener">Lihat Kurikulum Lengkap</a>
+          </div>
+          <p class="result-note">Hasil ini juga dikirim ke email Anda</p>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">MAPID Academy · Spatial Analysis Skill Assessment</div>
+  </footer>
+</div>
+
+<script>
+/*
+  MAPID Academy Spatial Analysis Assessment
+  Single-file implementation per PRD v1.0 (30 Sep 2026).
+  Ambiguity handled simply: “Area yang perlu dikembangkan” uses the three lowest
+  category percentages (A–D) with concise category-specific guidance.
+*/
+const ASSESSMENT_CONFIG = {
+  formEndpoint: "", // Isi URL MAPID Form / Google Apps Script saat deploy.
+  bootcampUrl: "https://mapid.co.id/academy/spatial",
+  ga4MeasurementId: "", // Tracking event uses gtag/dataLayer when host provides it.
+  metaPixelId: "",      // Tracking event uses fbq when host provides it.
+  profiling: [
+    {
+      key: "peran",
+      options: [
+        "Mahasiswa atau fresh graduate",
+        "GIS Analyst atau staf teknis",
+        "Peneliti atau akademisi",
+        "Perencana atau konsultan",
+        "Manajer atau team lead",
+        "Lainnya"
+      ]
+    },
+    {
+      key: "sektor",
+      options: [
+        "Pemerintahan dan Perencanaan Wilayah",
+        "Lingkungan dan Kehutanan",
+        "Perkebunan dan Sustainability",
+        "Konsultan Geospasial",
+        "Location Intelligence",
+        "Infrastruktur dan Utilitas",
+        "Belum menentukan"
+      ]
+    },
+    {
+      key: "tools",
+      options: [
+        "QGIS",
+        "ArcGIS",
+        "Google Earth Engine",
+        "Python (GeoPandas, Rasterio, dan sejenisnya)",
+        "Excel atau spreadsheet",
+        "Belum menggunakan tools GIS"
+      ]
+    },
+    {
+      key: "frekuensi",
+      options: [
+        "Hampir setiap hari",
+        "Beberapa kali dalam sebulan",
+        "Sesekali, tergantung proyek",
+        "Jarang atau belum pernah"
+      ]
+    }
+  ],
+  questions: [
+    {
+      id: 1, scored: true, category: "Basic Knowledge", categoryKey: "A", axis: "spatial", key: "C",
+      scenario: [
+        "Seorang GIS Analyst menggabungkan dua layer di QGIS: batas administrasi DKI Jakarta (polygon) dan lokasi outlet (point).",
+        "Setelah ditampilkan, sebaran titik outlet memiliki pola yang sama persis dengan sebaran aslinya, tetapi seluruhnya bergeser konsisten ke arah barat daya sehingga sebagian jatuh di laut. Data koordinat aslinya sudah diverifikasi benar."
+      ],
+      prompt: "Apa penyebab yang paling masuk akal?",
+      options: [
+        { label: "A", text: "Jumlah titik melebihi batas render QGIS sehingga sebagian digambar pada posisi default." },
+        { label: "B", text: "Kolom latitude dan longitude tertukar saat impor sehingga koordinat terbaca secara terbalik." },
+        { label: "C", text: "Kedua layer memakai CRS berbeda sehingga koordinat tidak jatuh pada posisi sebenarnya." },
+        { label: "D", text: "File titik disimpan sebagai CSV sehingga informasi geometri hilang saat proses impor." }
+      ]
+    },
+    {
+      id: 2, scored: true, category: "Basic Knowledge", categoryKey: "A", axis: "spatial", key: "A",
+      scenario: [
+        "Sebuah tim lingkungan melakukan studi kerentanan kekeringan. Data yang tersedia: jaringan sungai (garis), batas administrasi (polygon), titik lokasi sumur, suhu permukaan, dan elevasi wilayah.",
+        "Tim ingin membandingkan kondisi suhu dan elevasi di seluruh area studi sebagai dasar analisis pola kerentanan."
+      ],
+      prompt: "Pendekatan representasi data mana yang paling sesuai?",
+      options: [
+        { label: "A", text: "Suhu dan elevasi direpresentasikan sebagai raster, sedangkan sungai, batas, dan sumur tetap vector." },
+        { label: "B", text: "Seluruh data dikonversi ke raster beresolusi seragam agar dihitung dalam satu operasi." },
+        { label: "C", text: "Seluruh data dikonversi ke vector agar atribut tiap objek terjaga dan dapat di-join." },
+        { label: "D", text: "Suhu dan elevasi diubah menjadi titik sampel pada grid reguler." }
+      ]
+    },
+    {
+      id: 3, scored: true, category: "Basic Knowledge", categoryKey: "A", axis: "spatial", key: "D",
+      scenario: [
+        "Seorang analyst memetakan angka kejadian penyakit di sebuah kota. Ketika data yang sama diagregasi per kecamatan, muncul tiga area konsentrasi tinggi. Ketika diagregasi per kelurahan, pola konsentrasinya berbeda dan sebagian area yang tadinya menonjol tidak lagi terlihat."
+      ],
+      prompt: "Penjelasan mana yang paling tepat?",
+      options: [
+        { label: "A", text: "Salah satu analisis pasti keliru karena data yang sama seharusnya menghasilkan pola serupa." },
+        { label: "B", text: "Perbedaan akan hilang bila angka dinormalisasi menjadi rasio per seribu penduduk." },
+        { label: "C", text: "Hasil tingkat kelurahan selalu lebih dipercaya karena unit analisisnya jauh lebih detail." },
+        { label: "D", text: "Pola dapat berubah mengikuti unit agregasi, sehingga perlu diuji pada beberapa skala." }
+      ]
+    },
+    {
+      id: 4, scored: true, category: "Analytical Thinking", categoryKey: "B", axis: "spatial", key: "C",
+      scenario: [
+        "Sebuah jaringan minimarket ingin membuka cabang baru di Surabaya. Data yang tersedia: kepadatan permukiman, lokasi kompetitor, jaringan jalan, dan lokasi cabang eksisting.",
+        "Manajemen menetapkan dua kriteria: lokasi harus berada maksimal 500 meter dari permukiman padat, dan minimal 1 kilometer dari kompetitor."
+      ],
+      prompt: "Pendekatan mana yang paling sesuai untuk menghasilkan area yang memenuhi kedua kriteria?",
+      options: [
+        { label: "A", text: "Zonal Statistics pada raster kepadatan permukiman untuk memilih sel bernilai tertinggi." },
+        { label: "B", text: "Spatial Interpolation kepadatan permukiman untuk memperkirakan area potensial di luar cabang." },
+        { label: "C", text: "Buffer pada kedua kriteria jarak, lalu overlay untuk mengambil irisan yang memenuhinya." },
+        { label: "D", text: "Network Analysis dari cabang eksisting untuk mengukur jangkauan layanan terhadap permukiman." }
+      ]
+    },
+    {
+      id: 5, scored: true, category: "Analytical Thinking", categoryKey: "B", axis: "spatial", key: "A",
+      scenario: [
+        "Sebuah perusahaan ekspedisi mengalami peningkatan keterlambatan pengiriman. Analyst menemukan beberapa rute sering melewati ruas jalan dengan kemacetan tinggi pada pukul 07.00 sampai 09.00.",
+        "Perusahaan ingin mengetahui rute mana yang sebaiknya digunakan pada jam tertentu agar waktu perjalanan minimal."
+      ],
+      prompt: "Analisis mana yang paling sesuai?",
+      options: [
+        { label: "A", text: "Network Analysis dengan bobot waktu tempuh yang berbeda menurut jam pengiriman." },
+        { label: "B", text: "Heatmap kepadatan titik pengiriman untuk melihat area tersibuk pada jam tertentu." },
+        { label: "C", text: "Buffer di sekitar ruas jalan macet untuk menandai area yang perlu dihindari." },
+        { label: "D", text: "Spatial Interpolation kecepatan kendaraan untuk mengestimasi kondisi seluruh jaringan jalan." }
+      ]
+    },
+    {
+      id: 6, scored: true, category: "Analytical Thinking", categoryKey: "B", axis: "spatial", key: "B",
+      scenario: [
+        "Sebuah lembaga lingkungan ingin mengetahui rata-rata nilai NDVI di masing-masing kawasan hutan lindung. Data yang tersedia: raster NDVI yang mencakup seluruh wilayah studi, dan polygon batas tiap kawasan."
+      ],
+      prompt: "Metode mana yang paling efisien?",
+      options: [
+        { label: "A", text: "Spatial Join antara polygon kawasan dan titik sampel vegetasi lapangan." },
+        { label: "B", text: "Zonal Statistics untuk menghitung statistik nilai raster NDVI pada tiap polygon kawasan." },
+        { label: "C", text: "Clip raster NDVI per polygon, lalu membaca nilainya dari legenda peta." },
+        { label: "D", text: "Raster Calculator untuk menghitung rata-rata seluruh raster NDVI di area studi." }
+      ]
+    },
+    {
+      id: 7, scored: true, category: "Analytical Thinking", categoryKey: "B", axis: "spatial", key: "C",
+      scenario: [
+        "Sebuah perusahaan retail menganalisis 50 outlet dengan omzet tertinggi. Hasilnya: 80 persen di antaranya berada di area dengan foot traffic tinggi dan akses baik ke jalan utama.",
+        "Manajemen ingin menggunakan temuan ini sebagai dasar menilai kandidat lokasi cabang baru."
+      ],
+      prompt: "Respons mana yang paling tepat?",
+      options: [
+        { label: "A", text: "Temuan cukup kuat dijadikan kriteria utama karena delapan puluh persen adalah mayoritas." },
+        { label: "B", text: "Temuan belum dapat dipakai sebelum dibuktikan melalui predictive model yang tervalidasi." },
+        { label: "C", text: "Perlu diperiksa juga outlet dengan foot traffic tinggi yang omzetnya rendah." },
+        { label: "D", text: "Temuan sebaiknya dipakai mengevaluasi ulang outlet eksisting yang jauh dari jalan utama." }
+      ]
+    },
+    {
+      id: 8, scored: true, category: "Practical Experience & Workflow", categoryKey: "C", axis: "workflow", key: "A",
+      scenario: [
+        "Anda menerima 8.000 titik lokasi pelanggan dari tim lapangan. Data ini akan dipakai untuk analisis jangkauan layanan."
+      ],
+      prompt: "Apa langkah pertama yang paling tepat?",
+      options: [
+        { label: "A", text: "Memeriksa koordinat kosong, titik duplikat, dan konsistensi tipe data atribut." },
+        { label: "B", text: "Menjalankan analisis jangkauan layanan, lalu memeriksa hasil yang terlihat janggal." },
+        { label: "C", text: "Mengambil sampel lima ratus titik agar prosesnya ringan, lalu mengekstrapolasi hasilnya." },
+        { label: "D", text: "Mengonversi seluruh data ke shapefile agar kompatibel dengan semua software GIS." }
+      ]
+    },
+    {
+      id: 9, scored: true, category: "Practical Experience & Workflow", categoryKey: "C", axis: "workflow", key: "B",
+      scenario: [
+        "Anda menyelesaikan analisis kesesuaian lahan untuk Kota A. Tiga bulan kemudian, klien menanyakan mengapa satu area tertentu masuk kategori sangat sesuai, dan sekaligus meminta bobot kriteria diubah."
+      ],
+      prompt: "Kondisi kerja mana yang paling memungkinkan Anda merespons dengan cepat dan akurat?",
+      options: [
+        { label: "A", text: "Menyimpan file hasil akhir dan menjelaskannya berdasarkan peta yang sudah jadi." },
+        { label: "B", text: "Memiliki workflow berparameter yang tercatat, sehingga analisis dapat dijalankan ulang dan dibandingkan." },
+        { label: "C", text: "Mengulang seluruh proses dengan bobot baru, lalu mengganti file lama." },
+        { label: "D", text: "Mengirimkan data mentah kepada klien agar mereka menghitung sendiri sesuai bobotnya." }
+      ]
+    },
+    {
+      id: 10, scored: true, category: "Practical Experience & Workflow", categoryKey: "C", axis: "workflow", key: "D",
+      scenario: [
+        "Sebuah analisis yang sama harus dijalankan untuk 12 kabupaten, dan jumlahnya kemungkinan bertambah setiap kuartal."
+      ],
+      prompt: "Pendekatan mana yang paling berkelanjutan?",
+      options: [
+        { label: "A", text: "Menyusun template project GIS, lalu mengganti layer input manual tiap kabupaten." },
+        { label: "B", text: "Membagi dua belas kabupaten ke beberapa anggota tim disertai panduan langkah tertulis." },
+        { label: "C", text: "Mengerjakan tiga kabupaten prioritas dahulu dan menunda sisanya sampai ada waktu." },
+        { label: "D", text: "Membangun workflow terparameterisasi dengan wilayah sebagai input yang tinggal diganti." }
+      ]
+    },
+    {
+      id: 11, scored: true, category: "Tools & Technology", categoryKey: "D", axis: "workflow", key: "C",
+      scenario: [
+        "Tim Anda menerima ribuan baris data spasial pelanggan dengan beberapa masalah: ada nilai kosong, format tanggal tidak seragam, dan kolom angka terbaca sebagai teks. Data ini akan diperbarui setiap bulan."
+      ],
+      prompt: "Pendekatan mana yang paling sesuai?",
+      options: [
+        { label: "A", text: "Memperbaiki langsung di tabel atribut QGIS baris per baris hingga seluruhnya rapi." },
+        { label: "B", text: "Mengekspor ke spreadsheet dan merapikannya dengan find-replace serta sortir manual." },
+        { label: "C", text: "Memprosesnya dengan script sehingga langkah pembersihan tercatat dan dapat dijalankan ulang." },
+        { label: "D", text: "Meminta tim lapangan mengirim ulang data dalam format yang sudah seragam." }
+      ]
+    },
+    {
+      id: 12, scored: true, category: "Tools & Technology", categoryKey: "D", axis: "workflow", key: "A",
+      scenario: [
+        "Anda diminta menganalisis perubahan tutupan lahan satu provinsi selama periode 2015 sampai 2025 menggunakan citra satelit multi-temporal."
+      ],
+      prompt: "Environment mana yang paling sesuai untuk pekerjaan berskala ini?",
+      options: [
+        { label: "A", text: "Google Earth Engine, karena pemrosesan citra berlangsung di sisi server penyedia." },
+        { label: "B", text: "QGIS desktop dengan plugin citra, karena prosesnya dapat dikontrol secara visual." },
+        { label: "C", text: "GeoPandas di komputer lokal, karena mendukung pemrosesan data berukuran sangat besar." },
+        { label: "D", text: "ArcGIS Pro dengan Model Builder, karena mendukung otomatisasi alur kerja raster." }
+      ]
+    },
+    {
+      id: 13, scored: true, category: "Tools & Technology", categoryKey: "D", axis: "workflow", key: "B",
+      scenario: [
+        "Anda perlu membagikan hasil analisis berupa layer polygon dengan 25 kolom atribut, beberapa di antaranya bernama panjang dan berisi teks dengan karakter non-ASCII, kepada rekan yang menggunakan software GIS berbeda."
+      ],
+      prompt: "Format mana yang paling tepat?",
+      options: [
+        { label: "A", text: "Shapefile, karena paling umum dan didukung hampir seluruh software GIS." },
+        { label: "B", text: "GeoPackage, karena tidak membatasi panjang nama kolom dan menangani encoding dengan baik." },
+        { label: "C", text: "CSV berkolom koordinat, karena paling ringan dan mudah dibuka di mana saja." },
+        { label: "D", text: "KML, karena dapat langsung dibuka di Google Earth tanpa software tambahan." }
+      ]
+    },
+    {
+      id: 14, scored: false, category: "Learning Need & Aspirations", categoryKey: "E", axis: null, key: null,
+      scenario: [],
+      prompt: "Kesenjangan kompetensi apa yang paling ingin Anda atasi saat ini?",
+      options: [
+        { label: "A", text: "Kesulitan mengubah hasil analisis peta menjadi insight untuk keputusan bisnis atau perencanaan" },
+        { label: "B", text: "Terjebak pada proses kerja manual berbasis klik di GUI dan ingin belajar otomatisasi" },
+        { label: "C", text: "Belum mengetahui cara mengintegrasikan data vector dan raster secara terprogram" },
+        { label: "D", text: "Bingung menyusun dan mempublikasikan portofolio analisis yang diakui industri" }
+      ]
+    },
+    {
+      id: 15, scored: false, category: "Learning Need & Aspirations", categoryKey: "E", axis: null, key: null,
+      scenario: [],
+      prompt: "Dalam 1 sampai 3 bulan ke depan, seberapa siap Anda mengikuti program pelatihan komprehensif untuk mengakselerasi skill Spatial Analysis?",
+      options: [
+        { label: "A", text: "Sangat siap dan sedang mencari program yang tepat (rencana kurang dari 1 bulan)" },
+        { label: "B", text: "Berminat, tetapi masih mempertimbangkan jadwal dan anggaran (rencana 1 sampai 3 bulan)" },
+        { label: "C", text: "Masih tahap eksplorasi dan mengumpulkan informasi" },
+        { label: "D", text: "Saat ini hanya ingin memanfaatkan materi dan assessment gratis" }
+      ]
+    }
+  ],
+  thresholds: {
+    spatialThinkingHigh: 5,
+    workflowHigh: 4
+  },
+  levels: [
+    { min: 0,  max: 4,  label: "Foundational" },
+    { min: 5,  max: 7,  label: "Developing" },
+    { min: 8,  max: 10, label: "Competent" },
+    { min: 11, max: 13, label: "Advanced" }
+  ],
+  quadrants: {
+    ANALYTICAL_THINKER: {
+      title: "Cara berpikir spasial Anda sudah kuat",
+      body: "Anda memahami kapan sebuah masalah perlu dijawab secara spasial dan metode apa yang tepat untuk menjawabnya. Yang belum terbangun adalah cara kerja yang dapat diulang dan diskalakan, sehingga hasil analisis Anda masih bergantung pada proses manual.",
+      next: "Ubah kemampuan analisis yang sudah Anda miliki menjadi workflow yang terdokumentasi, dapat dijalankan ulang, dan siap dipakai untuk banyak wilayah sekaligus."
+    },
+    ADVANCED_PRACTITIONER: {
+      title: "Konsep dan workflow Anda sama-sama kuat",
+      body: "Anda sudah berada di atas rata-rata praktisi GIS di Indonesia, baik dalam merumuskan pertanyaan spasial maupun dalam membangun cara kerja yang efisien.",
+      next: "Perdalam ke analisis yang lebih kompleks dan bangun portofolio yang menunjukkan kemampuan tersebut secara terverifikasi. Pada level ini yang membedakan adalah bukti kerja, bukan penguasaan tool."
+    },
+    TOOL_OPERATOR: {
+      title: "Eksekusi teknis Anda sudah berjalan",
+      body: "Anda terbiasa menjalankan proses teknis dan familiar dengan tooling. Yang masih perlu diperkuat adalah tahap sebelum eksekusi: merumuskan pertanyaan spasial, memilih metode yang tepat, dan menginterpretasikan hasil dalam konteks pengambilan keputusan.",
+      next: "Perkuat kerangka berpikir analitis agar kemampuan teknis Anda menghasilkan rekomendasi, bukan hanya output."
+    },
+    FOUNDATIONAL: {
+      title: "Anda berada di tahap awal",
+      body: "Beberapa konsep dasar analisis spasial dan cara kerja yang sistematis masih perlu dibangun. Ini titik awal yang wajar, dan justru paling cepat berkembang bila diarahkan dengan benar.",
+      next: "Mulai dari fondasi konsep data spasial dan satu alur analisis lengkap dari data mentah sampai rekomendasi, sebelum masuk ke otomatisasi."
+    }
+  },
+  recommendations: {
+    A: "Fokus Anda ada pada penerjemahan hasil analisis menjadi rekomendasi. Kemampuan ini yang membedakan analyst yang dipanggil ke ruang rapat dari yang hanya diminta mengirim peta.",
+    B: "Otomatisasi adalah jalan keluar dari pekerjaan berulang. Yang perlu dibangun bukan penguasaan bahasa pemrograman, melainkan kebiasaan menyusun alur kerja yang dapat dijalankan ulang.",
+    C: "Integrasi vector dan raster secara terprogram membuka analisis yang sulit dilakukan lewat antarmuka klik. Ini tahap setelah fondasi konsep data spasial Anda mantap.",
+    D: "Portofolio adalah bukti kerja yang paling dilihat industri. Yang dinilai bukan jumlah proyek, melainkan kejelasan alur berpikir dari masalah sampai rekomendasi."
+  },
+  leadTemperature: { A: "HOT", B: "WARM", C: "COOL", D: "COLD" },
+  developmentGuidance: {
+    A: "Perkuat pemahaman representasi data spasial, CRS, dan dampak skala atau agregasi.",
+    B: "Latih pemilihan metode dan interpretasi hasil sesuai konteks masalah yang dihadapi.",
+    C: "Bangun kebiasaan quality check, dokumentasi workflow, dan proses yang dapat dijalankan ulang.",
+    D: "Perluas judgment dalam memilih tool, environment, dan format data yang sesuai dengan skala pekerjaan."
+  },
+  ctaUtm: {
+    utm_source: "assessment",
+    utm_medium: "result_page",
+    utm_campaign: "batch1"
+  }
+};
+
+const STORAGE_KEY = "mapidSpatialAssessmentStateV1";
+const ORDER_KEY = "mapidSpatialAssessmentOptionOrderV1";
+const TOTAL_QUESTIONS = ASSESSMENT_CONFIG.questions.length;
+
+const appState = {
+  stage: "landing",
+  timestampStart: "",
+  profile: {},
+  answers: {},
+  currentQuestion: 0,
+  utm: { utm_source: "", utm_medium: "", utm_campaign: "" },
+  result: null,
+  progressMilestones: []
+};
+
+let optionOrder = {};
+let selectedLabel = null;
+
+function storageGet(key) {
+  try { return sessionStorage.getItem(key); } catch (_) { return null; }
+}
+function storageSet(key, value) {
+  try { sessionStorage.setItem(key, value); } catch (_) {}
+}
+
+function saveState() {
+  storageSet(STORAGE_KEY, JSON.stringify(appState));
+}
+
+function restoreState() {
+  const raw = storageGet(STORAGE_KEY);
+  if (!raw) return;
+  try {
+    const parsed = JSON.parse(raw);
+    Object.assign(appState, parsed);
+  } catch (_) {}
+}
+
+function fisherYates(items) {
+  const arr = [...items];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+function initOptionOrder() {
+  const stored = storageGet(ORDER_KEY);
+  if (stored) {
+    try { optionOrder = JSON.parse(stored); return; } catch (_) {}
+  }
+  optionOrder = {};
+  ASSESSMENT_CONFIG.questions.forEach(q => {
+    optionOrder[q.id] = fisherYates(q.options.map(o => o.label));
+  });
+  storageSet(ORDER_KEY, JSON.stringify(optionOrder));
+}
+
+function readUtm() {
+  const params = new URLSearchParams(location.search);
+  const stored = storageGet("mapidSpatialAssessmentUtmV1");
+  let previous = {};
+  if (stored) { try { previous = JSON.parse(stored) || {}; } catch (_) {} }
+  const utm = {
+    utm_source: params.get("utm_source") || previous.utm_source || "",
+    utm_medium: params.get("utm_medium") || previous.utm_medium || "",
+    utm_campaign: params.get("utm_campaign") || previous.utm_campaign || ""
+  };
+  appState.utm = utm;
+  storageSet("mapidSpatialAssessmentUtmV1", JSON.stringify(utm));
+}
+
+function trackedBootcampUrl() {
+  const url = new URL(ASSESSMENT_CONFIG.bootcampUrl, location.href);
+  Object.entries(ASSESSMENT_CONFIG.ctaUtm).forEach(([key, value]) => url.searchParams.set(key, value));
+  return url.toString();
+}
+
+function populateBootcampLinks() {
+  const url = trackedBootcampUrl();
+  document.querySelectorAll(".bootcamp-link, .bootcamp-cta").forEach(a => a.href = url);
+}
+
+function trackEvent(name, params = {}) {
+  // Keeps this file dependency-free. If GTM/GA4 or Meta Pixel is provided by the host,
+  // these hooks send the events without loading additional third-party scripts here.
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: name, ...params });
+  if (typeof window.gtag === "function") window.gtag("event", name, params);
+  if (typeof window.fbq === "function") window.fbq("trackCustom", name, params);
+}
+
+function postPayload(payload) {
+  if (!ASSESSMENT_CONFIG.formEndpoint) {
+    console.info("[Mockup] formEndpoint belum diisi. Payload:", payload);
+    return;
+  }
+  try {
+    fetch(ASSESSMENT_CONFIG.formEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch(err => console.warn("Assessment payload submit failed:", err));
+  } catch (err) {
+    console.warn("Assessment payload submit failed:", err);
+  }
+}
+
+function isoNow() { return new Date().toISOString(); }
+
+function formatDurationSeconds(start, end) {
+  const a = new Date(start).getTime();
+  const b = new Date(end).getTime();
+  if (!Number.isFinite(a) || !Number.isFinite(b)) return 0;
+  return Math.max(0, Math.round((b - a) / 1000));
+}
+
+function showView(id) {
+  ["landingView", "leadView", "questionView", "resultView"].forEach(viewId => {
+    document.getElementById(viewId).hidden = viewId !== id;
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function fillProfilingSelects() {
+  ASSESSMENT_CONFIG.profiling.forEach(item => {
+    const select = document.getElementById(item.key);
+    item.options.forEach(text => {
+      const option = document.createElement("option");
+      option.value = text;
+      option.textContent = text;
+      select.appendChild(option);
+    });
+  });
+}
+
+function hydrateProfileForm() {
+  ["nama", "email", "whatsapp", "peran", "sektor", "tools", "frekuensi"].forEach(key => {
+    if (appState.profile[key] != null) document.getElementById(key).value = appState.profile[key];
+  });
+  document.getElementById("consent").checked = Boolean(appState.profile.consent);
+}
+
+function setError(field, message) {
+  const error = document.getElementById(`${field}-error`);
+  const control = document.getElementById(field);
+  if (error) error.textContent = message || "";
+  if (control) control.setAttribute("aria-invalid", message ? "true" : "false");
+}
+
+function validateLeadForm() {
+  const values = {
+    nama: document.getElementById("nama").value.trim(),
+    email: document.getElementById("email").value.trim(),
+    whatsapp: document.getElementById("whatsapp").value.trim(),
+    peran: document.getElementById("peran").value,
+    sektor: document.getElementById("sektor").value,
+    tools: document.getElementById("tools").value,
+    frekuensi: document.getElementById("frekuensi").value,
+    consent: document.getElementById("consent").checked
+  };
+
+  const errors = {};
+  if (values.nama.length < 3) errors.nama = "Nama wajib diisi, minimal 3 karakter.";
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) errors.email = "Masukkan format email yang valid.";
+  const waDigits = values.whatsapp.replace(/[\s+\-().]/g, "");
+  if (!/^(0|62)\d{8,13}$/.test(waDigits) || waDigits.length < 9 || waDigits.length > 15) {
+    errors.whatsapp = "Masukkan 9 sampai 15 digit dengan awalan 0 atau 62.";
+  }
+  ["peran", "sektor", "tools", "frekuensi"].forEach(key => {
+    if (!values[key]) errors[key] = "Field ini wajib dipilih.";
+  });
+  if (!values.consent) errors.consent = "Persetujuan data wajib dicentang untuk melanjutkan.";
+
+  ["nama", "email", "whatsapp", "peran", "sektor", "tools", "frekuensi", "consent"].forEach(key => setError(key, errors[key] || ""));
+
+  return { valid: Object.keys(errors).length === 0, values: { ...values, whatsapp: waDigits } };
+}
+
+function leadPayload() {
+  return {
+    event: "lead_capture",
+    timestamp_start: appState.timestampStart,
+    nama: appState.profile.nama || "",
+    email: appState.profile.email || "",
+    whatsapp: appState.profile.whatsapp || "",
+    peran: appState.profile.peran || "",
+    sektor: appState.profile.sektor || "",
+    tools: appState.profile.tools || "",
+    frekuensi: appState.profile.frekuensi || "",
+    consent: Boolean(appState.profile.consent),
+    ...appState.utm
+  };
+}
+
+function orderedOptions(question) {
+  const labels = optionOrder[question.id] || question.options.map(o => o.label);
+  return labels.map(label => question.options.find(o => o.label === label)).filter(Boolean);
+}
+
+function renderQuestion() {
+  const index = Math.min(appState.currentQuestion, TOTAL_QUESTIONS - 1);
+  const question = ASSESSMENT_CONFIG.questions[index];
+  selectedLabel = appState.answers[question.id] || null;
+
+  const count = index + 1;
+  const percent = Math.round((count / TOTAL_QUESTIONS) * 100);
+  document.getElementById("progressText").textContent = `Soal ${count} dari ${TOTAL_QUESTIONS}`;
+  document.getElementById("progressPercent").textContent = `${percent}%`;
+  document.getElementById("progressFill").style.width = `${percent}%`;
+  const progress = document.getElementById("progressBar");
+  progress.setAttribute("aria-valuenow", String(count));
+
+  document.getElementById("questionCategory").textContent = question.scored
+    ? `${question.category} · Dinilai`
+    : `${question.category} · Tidak dinilai`;
+
+  const scenario = document.getElementById("questionScenario");
+  scenario.innerHTML = "";
+  if (question.scenario.length) {
+    scenario.hidden = false;
+    question.scenario.forEach(text => {
+      const p = document.createElement("p");
+      p.textContent = text;
+      scenario.appendChild(p);
+    });
+  } else {
+    scenario.hidden = true;
+  }
+
+  document.getElementById("questionPrompt").textContent = question.prompt;
+  const optionsEl = document.getElementById("questionOptions");
+  optionsEl.innerHTML = "";
+
+  orderedOptions(question).forEach(option => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "option-card";
+    button.setAttribute("role", "radio");
+    button.setAttribute("aria-checked", selectedLabel === option.label ? "true" : "false");
+    button.dataset.label = option.label;
+    button.innerHTML = `<span class="option-marker" aria-hidden="true"></span><span>${escapeHtml(option.text)}</span>`;
+    button.addEventListener("click", () => selectOption(option.label, button));
+    button.addEventListener("keydown", e => {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight" || e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        const cards = [...optionsEl.querySelectorAll(".option-card")];
+        const here = cards.indexOf(button);
+        const direction = (e.key === "ArrowDown" || e.key === "ArrowRight") ? 1 : -1;
+        const next = cards[(here + direction + cards.length) % cards.length];
+        next.focus();
+      }
+    });
+    optionsEl.appendChild(button);
+  });
+
+  const prevButton = document.getElementById("prevQuestionBtn");
+  prevButton.disabled = index === 0;
+
+  const nextButton = document.getElementById("nextQuestionBtn");
+  nextButton.disabled = !selectedLabel;
+  nextButton.innerHTML = 'Lanjut <span aria-hidden="true">→</span>';
+
+  setTimeout(() => {
+    const first = optionsEl.querySelector(".option-card");
+    if (first) first.focus({ preventScroll: true });
+  }, 50);
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>'"]/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[char]));
+}
+
+function selectOption(label, element) {
+  selectedLabel = label;
+  document.querySelectorAll(".option-card").forEach(card => card.setAttribute("aria-checked", "false"));
+  element.setAttribute("aria-checked", "true");
+  document.getElementById("nextQuestionBtn").disabled = false;
+}
+
+function maybeTrackQuestionProgress(answeredCount) {
+  const pct = Math.round((answeredCount / TOTAL_QUESTIONS) * 100);
+  const milestones = [25, 50, 75, 100];
+  milestones.forEach(m => {
+    if (pct >= m && !appState.progressMilestones.includes(m)) {
+      appState.progressMilestones.push(m);
+      trackEvent("assessment_q_progress", { progress_percent: m });
+    }
+  });
+}
+
+function previousQuestion() {
+  if (appState.currentQuestion <= 0) return;
+  const question = ASSESSMENT_CONFIG.questions[appState.currentQuestion];
+  if (selectedLabel) appState.answers[question.id] = selectedLabel;
+  appState.currentQuestion -= 1;
+  saveState();
+  renderQuestion();
+}
+
+function nextQuestion() {
+  if (!selectedLabel) return;
+  const question = ASSESSMENT_CONFIG.questions[appState.currentQuestion];
+  appState.answers[question.id] = selectedLabel;
+  maybeTrackQuestionProgress(Object.keys(appState.answers).length);
+
+  if (appState.currentQuestion >= TOTAL_QUESTIONS - 1) {
+    appState.stage = "lead";
+    saveState();
+    showView("leadView");
+    hydrateProfileForm();
+    setTimeout(() => document.getElementById("nama").focus({ preventScroll: true }), 50);
+    return;
+  }
+
+  appState.currentQuestion += 1;
+  saveState();
+  renderQuestion();
+}
+
+function calculateResultFromScores(spatialScore, workflowScore) {
+  const total = spatialScore + workflowScore;
+  const spatialHigh = spatialScore >= ASSESSMENT_CONFIG.thresholds.spatialThinkingHigh;
+  const workflowHigh = workflowScore >= ASSESSMENT_CONFIG.thresholds.workflowHigh;
+  let quadrant;
+  if (spatialHigh && workflowHigh) quadrant = "ADVANCED_PRACTITIONER";
+  else if (spatialHigh && !workflowHigh) quadrant = "ANALYTICAL_THINKER";
+  else if (!spatialHigh && workflowHigh) quadrant = "TOOL_OPERATOR";
+  else quadrant = "FOUNDATIONAL";
+  const level = ASSESSMENT_CONFIG.levels.find(l => total >= l.min && total <= l.max)?.label || "Foundational";
+  return { spatialScore, workflowScore, total, quadrant, level };
+}
+
+function calculateResult() {
+  let spatialScore = 0;
+  let workflowScore = 0;
+  const categoryScore = { A: 0, B: 0, C: 0, D: 0 };
+  const categoryMax = { A: 3, B: 4, C: 3, D: 3 };
+
+  ASSESSMENT_CONFIG.questions.filter(q => q.scored).forEach(q => {
+    if (appState.answers[q.id] === q.key) {
+      if (q.axis === "spatial") spatialScore += 1;
+      if (q.axis === "workflow") workflowScore += 1;
+      categoryScore[q.categoryKey] += 1;
+    }
+  });
+
+  const core = calculateResultFromScores(spatialScore, workflowScore);
+  const gapLabel = appState.answers[14] || "";
+  const readinessLabel = appState.answers[15] || "";
+  const rankedCategories = Object.keys(categoryScore)
+    .map(key => ({ key, ratio: categoryScore[key] / categoryMax[key], score: categoryScore[key], max: categoryMax[key] }))
+    .sort((a, b) => a.ratio - b.ratio || a.key.localeCompare(b.key));
+
+  return {
+    ...core,
+    categoryScore,
+    categoryMax,
+    lowestCategories: rankedCategories.slice(0, 3).map(x => x.key),
+    gapLabel,
+    leadTemperature: ASSESSMENT_CONFIG.leadTemperature[readinessLabel] || ""
+  };
+}
+
+function completePayload(result) {
+  const timestampEnd = isoNow();
+  return {
+    event: "assessment_complete",
+    timestamp_start: appState.timestampStart,
+    timestamp_end: timestampEnd,
+    durasi_detik: formatDurationSeconds(appState.timestampStart, timestampEnd),
+    nama: appState.profile.nama || "",
+    email: appState.profile.email || "",
+    whatsapp: appState.profile.whatsapp || "",
+    peran: appState.profile.peran || "",
+    sektor: appState.profile.sektor || "",
+    tools: appState.profile.tools || "",
+    frekuensi: appState.profile.frekuensi || "",
+    jawaban: ASSESSMENT_CONFIG.questions.filter(q => q.scored).map(q => appState.answers[q.id] || ""),
+    skor_spatial_thinking: result.spatialScore,
+    skor_workflow: result.workflowScore,
+    skor_total: result.total,
+    kuadran: result.quadrant,
+    level: result.level,
+    gap_kompetensi: result.gapLabel,
+    lead_temperature: result.leadTemperature,
+    ...appState.utm
+  };
+}
+
+function completeAssessment() {
+  const result = appState.result || calculateResult();
+  appState.result = result;
+  postPayload(completePayload(result));
+  trackEvent("assessment_complete", {
+    kuadran: result.quadrant,
+    level: result.level,
+    lead_temperature: result.leadTemperature,
+    sektor: appState.profile.sektor || "",
+    peran: appState.profile.peran || ""
+  });
+  renderResult(result);
+  showView("resultView");
+  trackEvent("assessment_result_view", { kuadran: result.quadrant, level: result.level });
+}
+
+function renderResult(result) {
+  const narrative = ASSESSMENT_CONFIG.quadrants[result.quadrant];
+  document.getElementById("resultGreeting").textContent = `Halo, ${appState.profile.nama || "Peserta"}`;
+  document.getElementById("resultTitle").textContent = result.quadrant.replace(/_/g, " ");
+  document.getElementById("resultLevel").textContent = `Level: ${result.level}`;
+  document.getElementById("spatialScoreText").textContent = `${result.spatialScore} dari 7`;
+  document.getElementById("workflowScoreText").textContent = `${result.workflowScore} dari 6`;
+  document.getElementById("spatialScoreFill").style.width = `${(result.spatialScore / 7) * 100}%`;
+  document.getElementById("workflowScoreFill").style.width = `${(result.workflowScore / 6) * 100}%`;
+  document.getElementById("narrativeHeading").textContent = narrative.title;
+  document.getElementById("narrativeBody").textContent = narrative.body;
+  document.getElementById("narrativeNext").textContent = narrative.next;
+  document.getElementById("personalRecommendation").textContent = ASSESSMENT_CONFIG.recommendations[result.gapLabel] || "";
+
+  const list = document.getElementById("developmentList");
+  list.innerHTML = "";
+  result.lowestCategories.forEach(key => {
+    const li = document.createElement("li");
+    li.textContent = ASSESSMENT_CONFIG.developmentGuidance[key];
+    list.appendChild(li);
+  });
+
+  positionQuadrantDot(result.spatialScore, result.workflowScore);
+}
+
+function positionQuadrantDot(spatialScore, workflowScore) {
+  // Chart plotting area: x 62..474 (workflow 0..6), y 370..30 (spatial 0..7).
+  const x = 62 + (workflowScore / 6) * (474 - 62);
+  const y = 370 - (spatialScore / 7) * (370 - 30);
+  ["quadrantDot", "quadrantHalo"].forEach(id => {
+    const el = document.getElementById(id);
+    el.setAttribute("cx", x.toFixed(1));
+    el.setAttribute("cy", y.toFixed(1));
+  });
+}
+
+function startAssessment() {
+  if (!appState.timestampStart) appState.timestampStart = isoNow();
+  appState.stage = "questions";
+  appState.currentQuestion = Math.max(0, Math.min(appState.currentQuestion || 0, TOTAL_QUESTIONS - 1));
+  saveState();
+  showView("questionView");
+  renderQuestion();
+  trackEvent("assessment_start");
+}
+
+function handleLeadSubmit(event) {
+  event.preventDefault();
+  const { valid, values } = validateLeadForm();
+  if (!valid) {
+    const firstInvalid = document.querySelector('[aria-invalid="true"]');
+    if (firstInvalid) firstInvalid.focus();
+    return;
+  }
+  appState.profile = values;
+  appState.result = calculateResult();
+  appState.stage = "result";
+  saveState();
+  postPayload(leadPayload());
+  trackEvent("assessment_lead_capture", { sektor: values.sektor, peran: values.peran });
+  completeAssessment();
+}
+
+function backFromLead() {
+  appState.stage = "questions";
+  appState.currentQuestion = TOTAL_QUESTIONS - 1;
+  saveState();
+  showView("questionView");
+  renderQuestion();
+}
+
+function restoreStage() {
+  if (appState.stage === "result" && appState.result) {
+    renderResult(appState.result);
+    showView("resultView");
+    return;
+  }
+  if (appState.stage === "lead" && Object.keys(appState.answers || {}).length >= TOTAL_QUESTIONS) {
+    showView("leadView");
+    hydrateProfileForm();
+    return;
+  }
+  if (appState.stage === "questions" || appState.stage === "lead") {
+    appState.stage = "questions";
+    showView("questionView");
+    renderQuestion();
+    return;
+  }
+  showView("landingView");
+}
+
+function bindEvents() {
+  document.getElementById("startBtn").addEventListener("click", startAssessment);
+  document.getElementById("leadForm").addEventListener("submit", handleLeadSubmit);
+  document.getElementById("leadBackBtn").addEventListener("click", backFromLead);
+  document.getElementById("prevQuestionBtn").addEventListener("click", previousQuestion);
+  document.getElementById("nextQuestionBtn").addEventListener("click", nextQuestion);
+  document.getElementById("brandHome").addEventListener("click", event => {
+    event.preventDefault();
+    showView(appState.stage === "landing" ? "landingView" : (appState.stage === "result" ? "resultView" : appState.stage === "lead" ? "leadView" : "questionView"));
+  });
+  document.querySelectorAll(".bootcamp-cta").forEach(link => {
+    link.addEventListener("click", () => trackEvent("assessment_cta_click", {
+      kuadran: appState.result?.quadrant || "",
+      level: appState.result?.level || "",
+      cta_label: link.textContent.trim()
+    }));
+  });
+  document.querySelectorAll(".bootcamp-link").forEach(link => {
+    link.addEventListener("click", () => trackEvent("assessment_cta_click", { cta_label: link.textContent.trim() }));
+  });
+}
+
+function runScoringSelfTests() {
+  const test1 = calculateResultFromScores(6, 2);
+  console.assert(test1.quadrant === "ANALYTICAL_THINKER" && test1.level === "Competent", "Scoring test 1 failed", test1);
+  const test2 = calculateResultFromScores(3, 5);
+  console.assert(test2.quadrant === "TOOL_OPERATOR" && test2.level === "Competent", "Scoring test 2 failed", test2);
+}
+
+(function init() {
+  restoreState();
+  readUtm();
+  initOptionOrder();
+  fillProfilingSelects();
+  populateBootcampLinks();
+  hydrateProfileForm();
+  bindEvents();
+  runScoringSelfTests();
+  restoreStage();
+  saveState();
+  trackEvent("assessment_page_view");
+})();
+</script>
+</body>
+</html>
